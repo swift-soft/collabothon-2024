@@ -1,15 +1,15 @@
+import ESGScoreWidget from "./ESGScoreWidget";
 import Widget from "./Widget";
-import WidgetBarChart from "./charts/BarChart";
 import WidgetPieChart from "./charts/PieCharts";
 
 export default function ESGWidgets() {
   return (
     <>
       <Widget colSpan={3}>
-        <WidgetBarChart />
+        <ESGScoreWidget />
         {/* <WidgetBarChart /> */}
       </Widget>
-      <Widget colSpan={2}>
+      <Widget colSpan={3}>
         <WidgetPieChart />
       </Widget>
     </>

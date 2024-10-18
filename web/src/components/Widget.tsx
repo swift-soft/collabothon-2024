@@ -6,13 +6,19 @@ type Props = GridItemProps;
 export default function Widget({ children, ...rest }: Props) {
   return (
     <GridItem
-      bg="rgba(0, 46, 60, 0.5)"
+      bg="rgba(0, 46, 60, 0.7)"
       rounded="lg"
       boxShadow="md"
       p={2}
       {...rest}
     >
-      <Box bg="rgba(255, 255, 255, 0.9)" rounded="lg" w="full" h="full">
+      <Box
+        bg="rgba(255, 255, 255, 0.9)"
+        rounded="lg"
+        w="full"
+        h="full"
+        overflow="hidden"
+      >
         {children}
       </Box>
     </GridItem>
