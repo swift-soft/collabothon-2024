@@ -72,18 +72,17 @@ const ESGCalculator = () => {
             <Text>Loan amount</Text>
             <Flex alignItems="center">
               <Input
-                size="md" // Changed to a larger size
+                size="md"
                 variant="unstyled"
-                type="text" // Change type to text for formatting
-                value={formatNumberWithSpaces(loanAmount)} // Use formatted value
+                type="text"
+                value={formatNumberWithSpaces(loanAmount)}
                 onChange={(e) => {
-                  // Remove spaces and convert to number
                   const value = e.target.value.replace(/\s/g, "");
                   handleLoanAmountChange(parseFloat(value) || 0);
                 }}
                 maxW="100px"
                 textAlign="right"
-                fontSize="lg" // Increase font size
+                fontSize="lg"
               />
               <Text fontSize="lg" ml={1}>
                 €
@@ -122,7 +121,7 @@ const ESGCalculator = () => {
             <Text>Loan term</Text>
             <Flex alignItems="center">
               <Input
-                size="md" // Changed to a larger size
+                size="md"
                 variant="unstyled"
                 type="number"
                 value={loanTerm}
@@ -131,7 +130,7 @@ const ESGCalculator = () => {
                 }
                 maxW="60px"
                 textAlign="right"
-                fontSize="lg" // Increase font size
+                fontSize="lg"
               />
               <Text fontSize="lg" ml={1}>
                 years
@@ -168,7 +167,7 @@ const ESGCalculator = () => {
           <Flex justifyContent="space-between" w="full">
             <Text>ESG scoring</Text>
             <Input
-              size="md" // Changed to a larger size
+              size="md"
               variant="unstyled"
               type="number"
               value={esgScore}
@@ -177,7 +176,7 @@ const ESGCalculator = () => {
               }
               maxW="65px"
               textAlign="right"
-              fontSize="lg" // Increase font size
+              fontSize="lg"
             />
           </Flex>
           <Slider
