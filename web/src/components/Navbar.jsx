@@ -13,7 +13,7 @@ export default function Navbar() {
     <Box bg="brand.navy.500" py={4}>
       <Container maxW="container.xl">
         <Flex gap={4} align="center">
-          <Img src="/public/imgs/logo.svg" />
+          <Img src="/imgs/logo.svg" />
           {links.map((l) => (
             <Text
               key={l}
@@ -28,8 +28,8 @@ export default function Navbar() {
           ))}
           <Button variant="ghost" color="white" colorScheme="whiteAlpha">
             <Flex align="center" gap={2}>
-              <Img src="/public/imgs/lock.svg" />
-              Login
+              <Img src="/imgs/lock.svg" />
+              Log out
             </Flex>
           </Button>
         </Flex>
