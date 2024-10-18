@@ -5,7 +5,7 @@ type Props = GridItemProps;
 
 export default function Widget({ children, ...rest }: Props) {
   return (
-    <GridItem
+    <Box
       bg="rgba(0, 46, 60, 0.2)"
       rounded="lg"
       boxShadow="0px 2px 6px rgba(0, 0, 0, 0.2)"
@@ -21,6 +21,6 @@ export default function Widget({ children, ...rest }: Props) {
       >
         {children}
       </Box>
-    </GridItem>
+    </Box>
   );
 }

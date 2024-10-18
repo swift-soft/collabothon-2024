@@ -42,7 +42,7 @@ const notifications = [
 
 export default function Notifications() {
   return (
-    <Widget rowSpan={2} colSpan={2}>
+    <Widget rowSpan={4} colSpan={2} flex={1}>
       <Stack p={2}>
         <Heading fontSize="xl">Notifications</Heading>
         <Stack>
