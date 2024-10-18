@@ -1,7 +1,7 @@
 import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import WidgetsGrid from "./components/WidgetsGrid";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { IconLayoutDashboard } from "@tabler/icons-react";
 
 function App() {
   return (
@@ -12,12 +12,12 @@ function App() {
           <Heading mb={4}>Hello, Jimmy!</Heading>
           <Button
             rounded="full"
-            colorScheme="brand.yellow"
+            colorScheme="gray"
             color="black"
             fontWeight={400}
-            rightIcon={<ArrowForwardIcon />}
+            rightIcon={<IconLayoutDashboard />}
           >
-            Help
+            Customize
           </Button>
         </Flex>
         <WidgetsGrid />

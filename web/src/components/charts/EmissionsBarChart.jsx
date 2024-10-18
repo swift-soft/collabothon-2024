@@ -65,8 +65,8 @@ export default function EmissionsBarChart() {
   const [navy500] = useToken("colors", ["brand.navy.500"]);
 
   return (
-    <Box w="100%" p={4} pb={0}>
-      <Box w="100%" h="200px" bg="whiteAlpha.800" rounded="lg">
+    <Box w="100%">
+      <Box w="100%" h="200px" bg="whiteAlpha.800" rounded="lg" boxShadow="md">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={500}

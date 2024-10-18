@@ -1,7 +1,8 @@
-import { IconMail, IconPig, IconReceipt2 } from "@tabler/icons-react";
+import { IconMail, IconReceipt2, IconUserQuestion } from "@tabler/icons-react";
 import InfoWidget from "./InfoWidget";
 import Widget from "./Widget";
 import { Flex } from "@chakra-ui/react";
+import ConsultantsWidget from "./ConsultantsWidget";
 
 export default function TopWidgets() {
   return (
@@ -21,11 +22,7 @@ export default function TopWidgets() {
         />
       </Widget>
       <Widget colSpan={2} rowSpan={2} flex={1}>
-        <InfoWidget
-          title="12 new orders to be released"
-          link="Release now"
-          icon={<IconPig size={48} />}
-        />
+        <ConsultantsWidget />
       </Widget>
     </Flex>
   );

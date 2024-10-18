@@ -17,7 +17,7 @@ const propositions = [
 
 export default function CarbonOffsetPropositions() {
   return (
-    <Stack p={4}>
+    <Stack>
       <Heading fontSize="lg">
         Neutralize your carbon footprint by purchasing carbon credits
       </Heading>
