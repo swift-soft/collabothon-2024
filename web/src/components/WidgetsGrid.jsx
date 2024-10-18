@@ -1,8 +1,8 @@
 import { Grid } from "@chakra-ui/react";
-import Widget from "./Widget";
-import WidgetStackedAreaChart from "./charts/StackedAreaChart";
 import TopWidgets from "./TopWidgets";
 import ESGWidgets from "./ESGWidgets";
+import Notifications from "./Notifications";
+import Emissions from "./Emissions";
 
 export default function WidgetsGrid() {
   return (
@@ -15,9 +15,8 @@ export default function WidgetsGrid() {
     >
       <TopWidgets />
       <ESGWidgets />
-      <Widget colSpan={5}>
-        <WidgetStackedAreaChart />
-      </Widget>
+      <Notifications />
+      <Emissions />
     </Grid>
   );
 }
