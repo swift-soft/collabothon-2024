@@ -12,7 +12,13 @@ export default function Widget({ children, ...rest }: Props) {
       p={0.5}
       {...rest}
     >
-      <Box bg="#E0F6E9" rounded="lg" w="full" h="full" overflow="hidden">
+      <Box
+        bg="rgba(255, 255, 255, 0.6)"
+        rounded="lg"
+        w="full"
+        h="full"
+        overflow="hidden"
+      >
         {children}
       </Box>
     </GridItem>

@@ -9,13 +9,13 @@ export default function WidgetsGrid() {
     <Grid
       w="100%"
       minH="100vh"
-      templateRows="repeat(5, 1fr)"
+      templateRows="repeat(7, 1fr)"
       templateColumns="repeat(6, 1fr)"
       gap={4}
     >
       <TopWidgets />
       <ESGWidgets />
-      <Widget colSpan={5} rowSpan={2}>
+      <Widget colSpan={5} rowSpan={3}>
         <WidgetStackedAreaChart />
       </Widget>
     </Grid>
