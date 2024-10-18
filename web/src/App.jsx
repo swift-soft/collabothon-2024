@@ -1,10 +1,12 @@
-import { Stack, Heading } from "@chakra-ui/react";
+import { Heading, Box } from "@chakra-ui/react";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <Stack>
+    <Box fontFamily='"Gotham", sans-serif'>
+      <Navbar />
       <Heading>Collabothon</Heading>
-    </Stack>
+    </Box>
   );
 }
 
