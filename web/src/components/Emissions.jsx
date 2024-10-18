@@ -4,7 +4,7 @@ import Widget from "./Widget";
 
 export default function Emissions() {
   return (
-    <Widget colSpan={4}>
+    <Widget rowSpan={2} colSpan={4}>
       <EmissionsBarChart />
       <CarbonOffsetPropositions />
     </Widget>

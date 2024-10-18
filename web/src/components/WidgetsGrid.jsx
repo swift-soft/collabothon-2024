@@ -9,7 +9,7 @@ export default function WidgetsGrid() {
     <Grid
       w="100%"
       minH="100vh"
-      templateRows="repeat(3, 1fr)"
+      templateRows="repeat(5, 1fr)"
       templateColumns="repeat(6, 1fr)"
       gap={4}
     >
