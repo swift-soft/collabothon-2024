@@ -30,7 +30,7 @@ export default function Navbar() {
       <Container maxW="90%">
         <Flex justify="space-between">
           <Flex gap={16}>
-            <Img src="/public/imgs/logo.svg" />
+            <Img src="/imgs/logo.svg" />
             <VStack gap={10}>
               <Flex gap={4} width="full">
                 {linksUp.map((l) => (
@@ -64,8 +64,8 @@ export default function Navbar() {
           </Flex>
           <Button variant="ghost" color="white" colorScheme="whiteAlpha">
             <Flex align="center" gap={2}>
-              <Img src="/public/imgs/lock.svg" />
-              Login
+              <Img src="/imgs/lock.svg" />
+              Log out
             </Flex>
           </Button>
         </Flex>
