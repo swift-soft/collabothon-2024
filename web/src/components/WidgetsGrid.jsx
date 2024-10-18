@@ -1,4 +1,4 @@
-import { Flex, Grid, VStack } from "@chakra-ui/react";
+import { Flex, VStack } from "@chakra-ui/react";
 import TopWidgets from "./TopWidgets";
 import ESGWidgets from "./ESGWidgets";
 import Notifications from "./Notifications";

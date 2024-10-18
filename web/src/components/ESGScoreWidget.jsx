@@ -1,5 +1,10 @@
-import { Img } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+import ESGPieChart from "./charts/ESGPieCharts";
 
 export default function ESGScoreWidget() {
-  return <Img src="/imgs/esg-score.jpg" />;
+  return (
+    <Box bg="white" w="full" h="full" position="relative">
+      <ESGPieChart />
+    </Box>
+  );
 }
