@@ -1,4 +1,4 @@
-import { IconMail, IconReceipt2, IconUserQuestion } from "@tabler/icons-react";
+import { IconCheckbox, IconMail } from "@tabler/icons-react";
 import InfoWidget from "./InfoWidget";
 import Widget from "./Widget";
 import { Flex } from "@chakra-ui/react";
@@ -9,16 +9,16 @@ export default function TopWidgets() {
     <Flex gap={4} w="full">
       <Widget colSpan={2} rowSpan={2} flex={1}>
         <InfoWidget
-          title="10 Messages"
+          title="7 New messages"
           link="Open mailbox"
-          icon={<IconMail size={48} />}
+          icon={<IconMail size={36} />}
         />
       </Widget>
       <Widget colSpan={2} rowSpan={2} flex={1}>
         <InfoWidget
-          title="3 new orders to be released"
-          link="Release now"
-          icon={<IconReceipt2 size={48} />}
+          title="3 Actions to approve"
+          link="Go to approval requests"
+          icon={<IconCheckbox size={36} />}
         />
       </Widget>
       <Widget colSpan={2} rowSpan={2} flex={1}>

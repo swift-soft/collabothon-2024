@@ -3,7 +3,7 @@ import ESGPieChart from "./charts/ESGPieCharts";
 
 export default function ESGScoreWidget() {
   return (
-    <Box bg="white" w="full" h="full" position="relative">
+    <Box w="full" h="full" position="relative">
       <ESGPieChart />
     </Box>
   );

@@ -29,7 +29,7 @@ export default function ESGPieChart() {
     <>
       <Text
         position="absolute"
-        top="156px"
+        top="181px"
         left="50%"
         transform="translate(-50%)"
         fontSize="xl"
@@ -40,14 +40,14 @@ export default function ESGPieChart() {
       </Text>
       <Text
         position="absolute"
-        top="176px"
+        top="204px"
         left="50%"
         transform="translate(-50%)"
         fontWeight="600"
         fontSize="36px"
         opacity={activeInnerIndex === undefined ? 1 : 0}
       >
-        186
+        86
       </Text>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart
