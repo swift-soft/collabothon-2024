@@ -2,11 +2,7 @@ import {
   Box,
   Flex,
   Heading,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
+  Input,
   Slider,
   SliderFilledTrack,
   SliderThumb,
@@ -21,6 +17,7 @@ const ESGCalculator = () => {
   const [esgScore, setEsgScore] = useState(71);
   const [loanAmount, setLoanAmount] = useState(2000000);
   const [loanTerm, setLoanTerm] = useState(5);
+  const [reducedInterestRate, setReducedInterestRate] = useState(0);
 
   useEffect(() => {
     calculateSavings(esgScore, loanAmount, loanTerm);
@@ -33,6 +30,13 @@ const ESGCalculator = () => {
   const calculateSavings = (esgScore, loanAmount, loanTerm) => {
     const savings = (esgScore / 100) * 0.005 * loanAmount * loanTerm;
     setSavings(savings.toFixed(0));
+
+    if (loanAmount > 0) {
+      const interestReduction = (esgScore / 100) * 5;
+      setReducedInterestRate(interestReduction.toFixed(2));
+    } else {
+      setReducedInterestRate(0);
+    }
   };
 
   const handleEsgScoreChange = (value) => {
@@ -51,81 +55,170 @@ const ESGCalculator = () => {
   };
 
   return (
-    <VStack p={4} minH="full">
+    <VStack p={4} minH="full" gap={6}>
       <Heading fontSize="2xl">How much do you save with ESG?</Heading>
-      {esgScore >= 30 ? (
-        <Text fontSize="4xl">{formatNumberWithSpaces(savings)} €</Text>
-      ) : (
-        <Text fontSize="4xl" color="red.500">
-          No discount applied
-        </Text>
-      )}
-      <VStack alignItems="start" fontSize="xl" gap={8} w="80%">
-        <Flex alignItems="center" justifyContent="space-between" w="full">
-          <Text>Loan amount (€): </Text>
-          <NumberInput
-            size="lg"
-            onChange={(valueString) =>
-              handleLoanAmountChange(parseFloat(valueString))
-            }
-            value={loanAmount}
-            min={0}
-            maxW={28}
-          >
-            <NumberInputField pr={0} />
-          </NumberInput>
-        </Flex>
-        <Flex alignItems="center" justifyContent="space-between" w="full">
-          <Text>Loan term (years): </Text>
-          <NumberInput
-            size="lg"
-            maxW={20}
-            defaultValue={15}
-            min={1}
-            max={99}
-            onChange={(valueString) =>
-              handleLoanTermChange(parseInt(valueString) || 0)
-            }
-            value={loanTerm}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-        </Flex>
-        <VStack width="full" alignItems="start" gap={0}>
-          <Text>ESG scoring: </Text>
-          <Flex width="full" gap={10}>
-            <Slider
-              flex="1"
-              focusThumbOnChange={false}
-              value={esgScore}
-              onChange={handleEsgScoreChange}
-              min={0}
-              max={100}
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb fontSize="sm" boxSize="25px" children={esgScore} />
-            </Slider>
-            <NumberInput
-              size="lg"
-              maxW={12}
-              value={esgScore}
-              onChange={(valueString) =>
-                handleEsgScoreChange(parseInt(valueString) || 0)
-              }
-              max={100}
-              min={0}
-            >
-              <NumberInputField pr={0} />
-            </NumberInput>
+      <VStack alignItems="start" fontSize="sm" gap={5} w="95%">
+        {/* Loan Amount */}
+        <VStack
+          align="start"
+          width="full"
+          gap={0}
+          boxShadow="md"
+          rounded="lg"
+          p={2}
+          bg="whiteAlpha.600"
+        >
+          <Flex justifyContent="space-between" w="full">
+            <Text>Loan amount</Text>
+            <Flex alignItems="center">
+              <Input
+                size="md" // Changed to a larger size
+                variant="unstyled"
+                type="text" // Change type to text for formatting
+                value={formatNumberWithSpaces(loanAmount)} // Use formatted value
+                onChange={(e) => {
+                  // Remove spaces and convert to number
+                  const value = e.target.value.replace(/\s/g, "");
+                  handleLoanAmountChange(parseFloat(value) || 0);
+                }}
+                maxW="100px"
+                textAlign="right"
+                fontSize="lg" // Increase font size
+              />
+              <Text fontSize="lg" ml={1}>
+                €
+              </Text>
+            </Flex>
           </Flex>
+          <Slider
+            flex="1"
+            focusThumbOnChange={false}
+            value={loanAmount}
+            onChange={handleLoanAmountChange}
+            min={0}
+            max={5000000}
+            step={10000}
+          >
+            <SliderTrack>
+              <SliderFilledTrack bg="#325762" />
+            </SliderTrack>
+            <SliderThumb>
+              <Box bg="#325762" p={1} borderRadius="full" />
+            </SliderThumb>
+          </Slider>
+        </VStack>
+
+        {/* Loan Term */}
+        <VStack
+          align="start"
+          width="full"
+          gap={0}
+          boxShadow="md"
+          rounded="lg"
+          p={2}
+          bg="whiteAlpha.600"
+        >
+          <Flex justifyContent="space-between" w="full" alignItems="center">
+            <Text>Loan term</Text>
+            <Flex alignItems="center">
+              <Input
+                size="md" // Changed to a larger size
+                variant="unstyled"
+                type="number"
+                value={loanTerm}
+                onChange={(e) =>
+                  handleLoanTermChange(parseInt(e.target.value) || 0)
+                }
+                maxW="60px"
+                textAlign="right"
+                fontSize="lg" // Increase font size
+              />
+              <Text fontSize="lg" ml={1}>
+                years
+              </Text>
+            </Flex>
+          </Flex>
+          <Slider
+            flex="1"
+            focusThumbOnChange={false}
+            value={loanTerm}
+            onChange={handleLoanTermChange}
+            min={1}
+            max={30}
+          >
+            <SliderTrack>
+              <SliderFilledTrack bg="#325762" />
+            </SliderTrack>
+            <SliderThumb>
+              <Box bg="#325762" p={1} borderRadius="full" />
+            </SliderThumb>
+          </Slider>
+        </VStack>
+
+        {/* ESG Scoring */}
+        <VStack
+          align="start"
+          width="full"
+          gap={0}
+          boxShadow="md"
+          rounded="lg"
+          p={2}
+          bg="whiteAlpha.600"
+        >
+          <Flex justifyContent="space-between" w="full">
+            <Text>ESG scoring</Text>
+            <Input
+              size="md" // Changed to a larger size
+              variant="unstyled"
+              type="number"
+              value={esgScore}
+              onChange={(e) =>
+                handleEsgScoreChange(parseInt(e.target.value) || 0)
+              }
+              maxW="65px"
+              textAlign="right"
+              fontSize="lg" // Increase font size
+            />
+          </Flex>
+          <Slider
+            flex="1"
+            focusThumbOnChange={false}
+            value={esgScore}
+            onChange={handleEsgScoreChange}
+            min={0}
+            max={100}
+          >
+            <SliderTrack>
+              <SliderFilledTrack bg="#325762" />
+            </SliderTrack>
+            <SliderThumb>
+              <Box bg="#325762" p={1} borderRadius="full" />
+            </SliderThumb>
+          </Slider>
         </VStack>
       </VStack>
+
+      <Box minH="90px">
+        {esgScore >= 40 ? (
+          <VStack gap={4}>
+            <Flex fontSize="md" gap={2} alignItems="baseline">
+              Interest rate reduced by{" "}
+              <Text fontSize="xl">{reducedInterestRate}</Text>
+              percentage points
+            </Flex>
+            <VStack fontSize="sm" gap={0}>
+              <Text fontSize="3xl" fontWeight="extrabold" lineHeight="35px">
+                {formatNumberWithSpaces(savings)} €
+              </Text>
+              <Text>saved</Text>
+            </VStack>
+          </VStack>
+        ) : (
+          <Text fontSize="4xl" color="red.500" mt={7}>
+            No discount applied
+          </Text>
+        )}
+      </Box>
     </VStack>
   );
 };

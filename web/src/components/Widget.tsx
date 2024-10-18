@@ -1,9 +1,7 @@
 import { Box, GridItem, GridItemProps } from "@chakra-ui/react";
 import React from "react";
 
-type Props = GridItemProps;
-
-export default function Widget({ children, ...rest }: Props) {
+export default function Widget({ children, variant, ...rest }) {
   return (
     <Box
       bg="rgba(0, 46, 60, 0.2)"
