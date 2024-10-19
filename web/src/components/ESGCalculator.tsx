@@ -32,7 +32,7 @@ const ESGCalculator = () => {
     setSavings(savings.toFixed(0));
 
     if (loanAmount > 0) {
-      const interestReduction = (esgScore / 100) * 5;
+      const interestReduction = (esgScore / 1000) * 5;
       setReducedInterestRate(interestReduction.toFixed(2));
     } else {
       setReducedInterestRate(0);

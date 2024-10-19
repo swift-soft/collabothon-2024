@@ -3,22 +3,26 @@ import { useState } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from "recharts";
 
 const dataOuter = [
-  { name: "CSR Strategy", value: 9, group: 0, color: "#003f52" },
-  { name: "Shareholders", value: 12, group: 0, color: "#004a61" },
+  { name: "Anti-corruption", value: 15, group: 0, color: "#003f52" },
+  {
+    name: "Transparency",
+    value: 22,
+    group: 0,
+    color: "#004a61",
+  },
   { name: "Management", value: 35, group: 0, color: "#00556f" },
-  { name: "Product responsibility", value: 10, group: 1, color: "#e8a303" },
-  { name: "Community", value: 14, group: 1, color: "#d59501" },
-  { name: "Human rights", value: 8, group: 1, color: "#b48006" },
-  { name: "Workforce", value: 30, group: 1, color: "#b78000" },
-  { name: "Resources used", value: 20, group: 2, color: "#2c947d" },
-  { name: "Emissions", value: 28, group: 2, color: "#38b197" },
-  { name: "Innovation", value: 20, group: 2, color: "#40bea3" },
+  { name: "Diversity and inclusion", value: 21, group: 1, color: "#d59501" },
+  { name: "Data protection", value: 29, group: 1, color: "#b48006" },
+  { name: "Human rights", value: 40, group: 1, color: "#b78000" },
+  { name: "Resources used", value: 31, group: 2, color: "#2c947d" },
+  { name: "Waste management", value: 20, group: 2, color: "#40bea3" },
+  { name: "Emissions", value: 41, group: 2, color: "#38b197" },
 ];
 
 const dataInner = [
-  { name: "Governance", value: 56, color: "#03485d" },
-  { name: "Social", value: 62, color: "#FFB300" },
-  { name: "Environmental", value: 68, color: "#4bd4b6" },
+  { name: "Governance", value: 72, color: "#03485d" },
+  { name: "Social", value: 90, color: "#FFB300" },
+  { name: "Environmental", value: 92, color: "#4bd4b6" },
 ];
 
 export default function ESGPieChart() {
