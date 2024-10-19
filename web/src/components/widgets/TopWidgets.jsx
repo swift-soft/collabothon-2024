@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   IconAlertCircle,
   IconArrowBack,
@@ -8,52 +9,70 @@ import {
 } from "@tabler/icons-react";
 import InfoWidget from "./InfoWidget";
 import Widget from "./Widget";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import ConsultantsWidget from "./ConsultantsWidget";
+import {
+  fetchActionsForUser,
+  fetchMessagesForUser,
+  getUser,
+} from "../../config/supabaseClient";
 
-const messages = [
-  {
-    icon: <IconMessage />,
-    text: "Interest Rate Update on Saving...",
-    date: "2024-10-16 14:37",
-  },
-  {
-    icon: <IconAlertCircle />,
-    text: "Important Security Alert...",
-    date: "2024-10-15 9:52",
-  },
-];
-
-const requests = [
-  {
-    icon: <IconTransfer />,
-    text: "Transfer request",
-    date: "2024-10-16 13:49",
-  },
-  {
-    icon: <IconArrowBack />,
-    text: "Refund request",
-    date: "2024-10-14 11:23",
-  },
-];
+const iconMap = {
+  "Interest Rate Update on Saving...": <IconMessage />,
+  "Important Security Alert...": <IconAlertCircle />,
+  "Transfer request": <IconTransfer />,
+  "Refund request": <IconArrowBack />,
+};
 
 export default function TopWidgets() {
+  const [messages, setMessages] = useState([]);
+  const [actions, setActions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const currentUser = await getUser();
+      if (currentUser) {
+        const userId = currentUser.id;
+        const fetchedMessages = await fetchMessagesForUser(userId);
+        const fetchedActions = await fetchActionsForUser(userId);
+
+        setMessages(fetchedMessages.slice(0, 2));
+        setActions(fetchedActions.slice(0, 2));
+      }
+      setLoading(false);
+    };
+    loadData();
+  }, []);
+
+  if (loading) {
+    return <Box>Loading...</Box>;
+  }
+
   return (
     <Flex gap={4} w="full">
       <Widget colSpan={2} rowSpan={2} flex={1}>
         <InfoWidget
-          title="7 New messages"
+          title={`${messages.length} New messages`}
           link="Open mailbox"
           icon={<IconMail size={36} />}
-          items={messages}
+          items={messages.map((msg) => ({
+            icon: iconMap[msg.title] || <IconMessage />,
+            text: msg.title,
+            date: msg.date,
+          }))}
         />
       </Widget>
       <Widget colSpan={2} rowSpan={2} flex={1}>
         <InfoWidget
-          title="3 Actions to approve"
-          link="Go to approval requests"
+          title={`${actions.length} Actions to approve`}
+          link="Go to approval actions"
           icon={<IconCheckbox size={36} />}
-          items={requests}
+          items={actions.map((action) => ({
+            icon: iconMap[action.title] || <IconCheckbox />,
+            text: action.title,
+            date: action.date,
+          }))}
         />
       </Widget>
       <Widget colSpan={2} rowSpan={2} flex={1}>
