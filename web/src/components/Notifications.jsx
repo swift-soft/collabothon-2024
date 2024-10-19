@@ -1,7 +1,6 @@
 import {
   IconAlertCircle,
   IconMessage,
-  IconTransfer,
   IconUserExclamation,
 } from "@tabler/icons-react";
 import Widget from "./Widget";

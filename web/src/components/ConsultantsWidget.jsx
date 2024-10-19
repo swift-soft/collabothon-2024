@@ -8,8 +8,13 @@ import {
   Spacer,
   Box,
   Button,
+  IconButton,
 } from "@chakra-ui/react";
-import { IconPhoneCall, IconUserQuestion } from "@tabler/icons-react";
+import {
+  IconMessage,
+  IconPhoneCall,
+  IconUserQuestion,
+} from "@tabler/icons-react";
 
 const consultants = [
   {
@@ -37,7 +42,7 @@ export default function ConsultantsWidget() {
         <IconUserQuestion size={36} />
         <Flex flexDirection="column">
           <Heading fontSize="lg">We are here to help!</Heading>
-          <Text>Video call one of our consultants</Text>
+          <Text>Video call or chat with one of our consultants</Text>
         </Flex>
       </Flex>
       <Stack spacing={2}>
@@ -53,10 +58,6 @@ export default function ConsultantsWidget() {
             cursor="pointer"
             transition="all 250ms ease"
             bg="gray.50"
-            _hover={{
-              bg: "gray.100",
-            }}
-            _active={{ bg: "gray.200" }}
           >
             <Avatar src={c.avatar} />
             <Stack spacing={0}>
@@ -73,7 +74,18 @@ export default function ConsultantsWidget() {
               </Flex>
             </Stack>
             <Spacer />
-            <IconPhoneCall color="#002E3C" />
+            <Flex align="center" gap={2}>
+              <IconButton
+                aria-label="message"
+                icon={<IconMessage color="#002E3C" />}
+                rounded="full"
+              />
+              <IconButton
+                aria-label="call"
+                icon={<IconPhoneCall color="#002E3C" />}
+                rounded="full"
+              />
+            </Flex>
           </Flex>
         ))}
       </Stack>

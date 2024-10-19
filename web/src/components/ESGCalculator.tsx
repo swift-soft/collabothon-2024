@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 
 const ESGCalculator = () => {
   const [savings, setSavings] = useState(0);
-  const [esgScore, setEsgScore] = useState(71);
+  const [esgScore, setEsgScore] = useState(86);
   const [loanAmount, setLoanAmount] = useState(2000000);
   const [loanTerm, setLoanTerm] = useState(5);
   const [reducedInterestRate, setReducedInterestRate] = useState(0);

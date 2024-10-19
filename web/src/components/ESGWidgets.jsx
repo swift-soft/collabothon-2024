@@ -10,7 +10,7 @@ export default function ESGWidgets() {
         <ESGScoreWidget />
         {/* <WidgetBarChart /> */}
       </Widget>
-      <Widget colSpan={3} rowSpan={3} flex={1} bg="#4bd4b642">
+      <Widget colSpan={3} rowSpan={3} flex={1} bg="rgba(200, 234, 234, 0.8)">
         <ESGCalculator />
         {/* <WidgetPieChart /> */}
       </Widget>
