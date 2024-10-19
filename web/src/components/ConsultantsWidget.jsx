@@ -13,13 +13,13 @@ import { IconPhoneCall, IconUserQuestion } from "@tabler/icons-react";
 
 const consultants = [
   {
-    avatar: "/imgs/consultant-2.jpg",
-    name: "Jochim",
+    avatar: "/imgs/avatar-bartek.jpg",
+    name: "Bartek",
     available: true,
   },
   {
     avatar: "/imgs/consultant-1.jpg",
-    name: "Sofia",
+    name: "Susanne",
     available: false,
   },
 ];
