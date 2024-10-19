@@ -11,13 +11,13 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;
 
-// export const getUser = async () => {
-//   const { data: user } = await supabase.auth.getUser();
-//   if (!user.user) return null;
+export const getUser = async () => {
+  const { data: user } = await supabase.auth.getUser();
+  if (!user.user) return null;
 
-//   const { data: publicUser, error } = await supabase
-//     .from("users")
-//     .select("*")
-//     .eq("id", user?.user.id);
-//   return publicUser[0];
-// };
+  const { data: publicUser, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", user?.user.id);
+  return publicUser[0];
+};
