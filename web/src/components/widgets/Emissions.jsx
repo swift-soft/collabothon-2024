@@ -1,6 +1,6 @@
 import { Heading, Stack } from "@chakra-ui/react";
 import CarbonOffsetPropositions from "./CarbonOffsetPropositions";
-import EmissionsBarChart from "./charts/EmissionsBarChart";
+import EmissionsBarChart from "../charts/EmissionsBarChart";
 import Widget from "./Widget";
 
 export default function Emissions() {

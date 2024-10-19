@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import ESGPieChart from "./charts/ESGPieCharts";
+import ESGPieChart from "../charts/ESGPieCharts";
 
 export default function ESGScoreWidget() {
   return (

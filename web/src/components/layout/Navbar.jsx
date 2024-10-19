@@ -7,6 +7,8 @@ import {
   Button,
   VStack,
 } from "@chakra-ui/react";
+import supabase from "../../config/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const linksDown = [
   "Accounts & Cash Management",
@@ -25,6 +27,17 @@ const linksUp = [
 ];
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      navigate("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
     <Box bg="brand.navy.500" py={4}>
       <Container maxW="90%">
@@ -62,7 +75,12 @@ export default function Navbar() {
               </Flex>
             </VStack>
           </Flex>
-          <Button variant="ghost" color="white" colorScheme="whiteAlpha">
+          <Button
+            variant="ghost"
+            color="white"
+            colorScheme="whiteAlpha"
+            onClick={handleLogout}
+          >
             <Flex align="center" gap={2}>
               <Img src="/imgs/lock.svg" />
               Log out

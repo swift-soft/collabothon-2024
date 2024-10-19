@@ -6,7 +6,7 @@ import {
 import Widget from "./Widget";
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 
-const notifications = [
+const toDoList = [
   {
     icon: <IconUserExclamation />,
     title: "Reduce CO₂ Emissions by 10%",
@@ -53,13 +53,13 @@ const truncateText = (text, maxLength) => {
   return text;
 };
 
-export default function Notifications() {
+export default function ToDoList() {
   return (
     <Widget rowSpan={4} colSpan={2} flex={1}>
       <Stack p={2}>
         <Heading fontSize="xl">How to increase ESG score?</Heading>
         <Stack>
-          {notifications.map((n, i) => (
+          {toDoList.map((n, i) => (
             <Flex
               key={i}
               alignItems="center"
