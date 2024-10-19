@@ -16,7 +16,7 @@ export const getUser = async () => {
   if (!user.user) return null;
 
   const { data: publicUser, error } = await supabase
-    .from("users")
+    .from("profiles")
     .select("*")
     .eq("id", user?.user.id);
   return publicUser[0];
