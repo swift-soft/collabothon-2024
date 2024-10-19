@@ -32,11 +32,12 @@ export default function CarbonOffsetPropositions() {
             boxShadow="md"
             cursor="pointer"
             transition="all 250ms ease"
-            bg="whiteAlpha.600"
-            _hover={{ bg: "whiteAlpha.900" }}
             as={Link}
             href={p.link}
             target="_blank"
+            bg="gray.50"
+            _hover={{ bg: "gray.100" }}
+            _active={{ bg: "gray.200" }}
           >
             <Img
               src={p.img}

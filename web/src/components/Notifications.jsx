@@ -56,8 +56,9 @@ export default function Notifications() {
               p={2}
               cursor="pointer"
               transition="all 250ms ease"
-              bg="whiteAlpha.600"
-              _hover={{ bg: "whiteAlpha.900" }}
+              bg="gray.50"
+              _hover={{ bg: "gray.100" }}
+              _active={{ bg: "gray.200" }}
             >
               <Box
                 rounded="full"

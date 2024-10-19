@@ -11,7 +11,7 @@ import {
 const linksDown = [
   "Accounts & Cash Management",
   "Financing & Foreign Trade",
-  "Investment & Risk Management",
+  "Investment",
   "Insights & Research",
   "Help & Contact",
 ];

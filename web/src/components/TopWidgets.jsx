@@ -5,7 +5,6 @@ import {
   IconMail,
   IconMessage,
   IconTransfer,
-  IconUserExclamation,
 } from "@tabler/icons-react";
 import InfoWidget from "./InfoWidget";
 import Widget from "./Widget";
@@ -15,13 +14,13 @@ import ConsultantsWidget from "./ConsultantsWidget";
 const messages = [
   {
     icon: <IconMessage />,
-    text: "Lorem ipsum dolor sit...",
-    date: "2024-10-16",
+    text: "Interest Rate Update on Saving...",
+    date: "2024-10-16 14:37",
   },
   {
     icon: <IconAlertCircle />,
-    text: "Lorem ipsum dolor sit...",
-    date: "2024-10-16",
+    text: "Important Security Alert...",
+    date: "2024-10-15 9:52",
   },
 ];
 
@@ -29,12 +28,12 @@ const requests = [
   {
     icon: <IconTransfer />,
     text: "Transfer request",
-    date: "2024-10-16",
+    date: "2024-10-16 13:49",
   },
   {
     icon: <IconArrowBack />,
     text: "Refund request",
-    date: "2024-10-16",
+    date: "2024-10-14 11:23",
   },
 ];
 

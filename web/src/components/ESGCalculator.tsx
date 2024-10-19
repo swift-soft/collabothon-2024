@@ -55,7 +55,7 @@ const ESGCalculator = () => {
   };
 
   return (
-    <VStack p={4} minH="full" gap={6} bg="#E1F6E9">
+    <VStack p={4} minH="full" gap={6}>
       <Heading fontSize="2xl">How much do you save with ESG?</Heading>
       <VStack alignItems="start" fontSize="sm" gap={5} w="95%">
         {/* Loan Amount */}
