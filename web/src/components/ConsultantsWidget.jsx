@@ -13,12 +13,14 @@ import { IconPhoneCall, IconUserQuestion } from "@tabler/icons-react";
 
 const consultants = [
   {
-    avatar: "/imgs/consultant-1.jpg",
-    name: "Sofia Wolf",
+    avatar: "/imgs/consultant-2.jpg",
+    name: "Jochim",
+    available: true,
   },
   {
-    avatar: "/imgs/consultant-2.jpg",
-    name: "Jochim Schmid",
+    avatar: "/imgs/consultant-1.jpg",
+    name: "Sofia",
+    available: false,
   },
 ];
 
@@ -60,8 +62,14 @@ export default function ConsultantsWidget() {
             <Stack spacing={0}>
               <Text fontWeight={600}>{c.name}</Text>
               <Flex align="center" gap={1}>
-                <Box boxSize={2} bg="green.400" rounded="full" />
-                <Text fontSize="sm">Available</Text>
+                <Box
+                  boxSize={2}
+                  bg={c.available ? "green.400" : "red.500"}
+                  rounded="full"
+                />
+                <Text fontSize="sm">
+                  {c.available ? "Available" : "Back in 15 minutes"}
+                </Text>
               </Flex>
             </Stack>
             <Spacer />

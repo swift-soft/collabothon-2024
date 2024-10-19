@@ -1,4 +1,12 @@
-import { Box, useToken } from "@chakra-ui/react";
+import {
+  Box,
+  Checkbox,
+  CheckboxGroup,
+  Flex,
+  Stack,
+  useToken,
+} from "@chakra-ui/react";
+import { useState } from "react";
 import {
   BarChart,
   Bar,
@@ -13,59 +21,88 @@ import {
 const data = [
   {
     name: "01.24",
-    co2: 4000,
+    transport: 0.5,
+    energy: 0.8,
+    heating: 0.4,
   },
   {
     name: "02.24",
-    co2: 3000,
+    transport: 0.5,
+    energy: 0.75,
+    heating: 0.35,
   },
   {
     name: "03.24",
-    co2: 2000,
+    transport: 0.4,
+    energy: 0.7,
+    heating: 0.3,
   },
   {
     name: "04.24",
-    co2: 2780,
+    transport: 0.4,
+    energy: 0.6,
+    heating: 0.2,
   },
   {
     name: "05.24",
-    co2: 1890,
+    transport: 0.3,
+    energy: 0.55,
+    heating: 0.1,
   },
   {
     name: "06.24",
-    co2: 2390,
+    transport: 0.3,
+    energy: 0.5,
+    heating: 0.05,
   },
   {
     name: "07.24",
-    co2: 3490,
+    transport: 0.3,
+    energy: 0.45,
+    heating: 0.05,
   },
   {
     name: "08.24",
-    co2: 2490,
+    transport: 0.3,
+    energy: 0.5,
+    heating: 0.05,
   },
   {
     name: "09.24",
-    co2: 2690,
+    transport: 0.35,
+    energy: 0.6,
+    heating: 0.1,
   },
   {
     name: "10.24",
-    co2: 1990,
+    transport: 0.4,
+    energy: 0.7,
+    heating: 0.2,
   },
   {
     name: "11.24",
-    co2: 2000,
+    transport: 0.45,
+    energy: 0.75,
+    heating: 0.3,
   },
   {
     name: "12.24",
-    co2: 2100,
+    transport: 0.5,
+    energy: 0.8,
+    heating: 0.4,
   },
 ];
 
 export default function EmissionsBarChart() {
-  const [navy500] = useToken("colors", ["brand.navy.500"]);
+  const [navy500, yellow500] = useToken("colors", [
+    "brand.navy.500",
+    "brand.yellow.500",
+  ]);
+
+  const [selected, setSelected] = useState(["transport", "energy", "heating"]);
 
   return (
-    <Box w="100%">
+    <Stack w="100%">
       <Box w="100%" h="200px" bg="whiteAlpha.800" rounded="lg" boxShadow="md">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -83,7 +120,15 @@ export default function EmissionsBarChart() {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="co2" stackId="a" fill={navy500} opacity={0.8} />
+            {selected.includes("transport") && (
+              <Bar dataKey="transport" fill={navy500} opacity={0.8} />
+            )}
+            {selected.includes("energy") && (
+              <Bar dataKey="energy" fill={yellow500} opacity={0.8} />
+            )}
+            {selected.includes("heating") && (
+              <Bar dataKey="heating" fill="#4BD4B6" opacity={0.8} />
+            )}
             <ReferenceLine
               y={3000}
               label="Max"
@@ -93,6 +138,23 @@ export default function EmissionsBarChart() {
           </BarChart>
         </ResponsiveContainer>
       </Box>
-    </Box>
+      <CheckboxGroup
+        colorScheme="green"
+        defaultValue={selected}
+        onChange={setSelected}
+      >
+        <Stack spacing={6} direction="row" alignSelf="center">
+          <Checkbox value="transport" colorScheme="brand.navy">
+            Transport
+          </Checkbox>
+          <Checkbox value="energy" colorScheme="brand.yellow">
+            Electrical energy
+          </Checkbox>
+          <Checkbox value="heating" colorScheme="green">
+            Thermal energy
+          </Checkbox>
+        </Stack>
+      </CheckboxGroup>
+    </Stack>
   );
 }
