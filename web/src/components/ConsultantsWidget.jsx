@@ -55,7 +55,6 @@ export default function ConsultantsWidget() {
             rounded="lg"
             p={2}
             pr={4}
-            cursor="pointer"
             transition="all 250ms ease"
             bg="gray.50"
           >
