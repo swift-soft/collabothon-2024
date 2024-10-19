@@ -121,13 +121,28 @@ export default function EmissionsBarChart() {
             <YAxis />
             <Tooltip />
             {selected.includes("transport") && (
-              <Bar dataKey="transport" fill={navy500} opacity={0.8} />
+              <Bar
+                dataKey="transport"
+                fill={navy500}
+                opacity={0.8}
+                name="Transport"
+              />
             )}
             {selected.includes("energy") && (
-              <Bar dataKey="energy" fill={yellow500} opacity={0.8} />
+              <Bar
+                dataKey="energy"
+                fill={yellow500}
+                opacity={0.8}
+                name="Electrical energy"
+              />
             )}
             {selected.includes("heating") && (
-              <Bar dataKey="heating" fill="#4BD4B6" opacity={0.8} />
+              <Bar
+                dataKey="heating"
+                fill="#4BD4B6"
+                opacity={0.8}
+                name="Thermal energy"
+              />
             )}
             <ReferenceLine
               y={3000}
