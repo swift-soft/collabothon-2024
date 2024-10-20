@@ -1,0 +1,4 @@
+ALTER TABLE profiles
+ADD COLUMN role VARCHAR(255),
+ADD COLUMN company UUID REFERENCES companies(id),
+ADD COLUMN available BOOLEAN NOT NULL DEFAULT false;

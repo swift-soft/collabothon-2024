@@ -15,21 +15,33 @@ import {
   IconPhoneCall,
   IconUserQuestion,
 } from "@tabler/icons-react";
-
-const consultants = [
-  {
-    avatar: "/imgs/avatar-bartek.jpg",
-    name: "Bartek",
-    available: true,
-  },
-  {
-    avatar: "/imgs/consultant-1.jpg",
-    name: "Susanne",
-    available: false,
-  },
-];
+import { useEffect, useState } from "react";
+import { getUser } from "../../config/supabaseClient";
+import { fetchConsultantsForCompany } from "../../config/supabaseClient";
 
 export default function ConsultantsWidget() {
+  const [consultants, setConsultants] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadConsultants = async () => {
+      const currentUser = await getUser();
+      if (currentUser) {
+        const { company } = currentUser;
+        const fetchedConsultants = await fetchConsultantsForCompany(company);
+
+        setConsultants(fetchedConsultants);
+      }
+      setLoading(false);
+    };
+
+    loadConsultants();
+  }, []);
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <Stack
       alignItems="left"
@@ -58,7 +70,7 @@ export default function ConsultantsWidget() {
             transition="all 250ms ease"
             bg="gray.50"
           >
-            <Avatar src={c.avatar} />
+            <Avatar src={c.avatar_url} />
             <Stack spacing={0}>
               <Text fontWeight={600}>{c.name}</Text>
               <Flex align="center" gap={1}>

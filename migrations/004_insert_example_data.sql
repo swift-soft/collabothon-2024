@@ -40,3 +40,59 @@ VALUES
     (gen_random_uuid(), 'Launch Diversity & Inclusion Program', 'Introduce mandatory diversity training and ensure gender and racial representation in leadership roles within the company by the end of the year.', (SELECT biedronka_id FROM companies)),
     (gen_random_uuid(), 'Increase Governance Transparency', 'Publish quarterly governance reports, including executive pay disclosures and decision-making processes, on the corporate website starting next quarter.', (SELECT biedronka_id FROM companies)),
     (gen_random_uuid(), 'Establish Anti-Corruption Training', 'Develop and implement an anti-corruption and ethics training program for all employees, with a focus on procurement and financial practices, by Q1 2025.', (SELECT biedronka_id FROM companies));
+
+INSERT INTO consultants_company (consultant_id, company_id)
+VALUES 
+    ((SELECT bartek_id FROM users), (SELECT biedronka_id FROM companies)),
+    ((SELECT susanne_id FROM users), (SELECT biedronka_id FROM companies));
+
+WITH 
+    users AS (
+        SELECT 
+            '8595615e-bc1c-481c-a2a8-3b72ca43456a'::uuid AS jimmy_id,
+    ),
+    companies AS (
+        SELECT 
+            '23229f18-b9cd-4b95-a20c-2da1675da91e'::uuid AS biedronka_id
+    )
+
+UPDATE profiles
+SET 
+    company = (SELECT biedronka_id FROM companies),
+    role = 'customer'
+WHERE id = (SELECT jimmy_id FROM users);
+
+WITH 
+    users AS (
+        SELECT 
+            'a840b839-3c56-4c98-b380-accbd8b5e6f3'::uuid AS susanne_id,
+            'd914658a-6555-4d0c-91c2-731e90513e98'::uuid AS bartek_id
+    ),
+    companies AS (
+        SELECT 
+            '562ebbb9-97e5-4d6c-a5ae-20e25e33da13'::uuid AS commerzbank_id,
+    )
+
+UPDATE profiles
+SET 
+    company = (SELECT commerzbank_id FROM companies),
+    role = 'consultant'
+WHERE id IN (SELECT susanne_id FROM users UNION SELECT bartek_id FROM users);
+
+WITH 
+    users AS (
+        SELECT 
+            'd914658a-6555-4d0c-91c2-731e90513e98'::uuid AS bartek_id,
+            'a840b839-3c56-4c98-b380-accbd8b5e6f3'::uuid AS susanne_id
+    )
+UPDATE profiles
+SET 
+    available = CASE 
+        WHEN id = (SELECT bartek_id FROM users) THEN true
+        WHEN id = (SELECT susanne_id FROM users) THEN false
+    END,
+    avatar_url = CASE 
+        WHEN id = (SELECT bartek_id FROM users) THEN '/imgs/avatar-bartek.jpg'
+        WHEN id = (SELECT susanne_id FROM users) THEN '/imgs/consultant-1.jpg'
+    END
+WHERE id IN (SELECT bartek_id FROM users UNION SELECT susanne_id FROM users);

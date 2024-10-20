@@ -5,45 +5,19 @@ import {
 } from "@tabler/icons-react";
 import Widget from "./Widget";
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { fetchToDoListByCompany } from "../../config/supabaseClient";
+import { getUser } from "../../config/supabaseClient";
 
-const toDoList = [
-  {
-    icon: <IconUserExclamation />,
-    title: "Reduce CO₂ Emissions by 10%",
-    description:
-      "Implement carbon offset programs and switch to renewable energy sources to reduce overall emissions in the next quarter.",
-  },
-  {
-    icon: <IconMessage />,
-    title: "Upgrade to Energy-Efficient Systems",
-    description:
-      "Replace outdated equipment with energy-efficient alternatives, install smart meters, and utilize LED lighting in all facilities within six months.",
-  },
-  {
-    icon: <IconUserExclamation />,
-    title: "Implement Water Recycling",
-    description:
-      "Install water recycling systems in manufacturing plants to decrease water consumption by 20% over the next year.",
-  },
-  {
-    icon: <IconMessage />,
-    title: "Launch Diversity & Inclusion Program",
-    description:
-      "Introduce mandatory diversity training and ensure gender and racial representation in leadership roles within the company by the end of the year.",
-  },
-  {
-    icon: <IconAlertCircle />,
-    title: "Increase Governance Transparency",
-    description:
-      "Publish quarterly governance reports, including executive pay disclosures and decision-making processes, on the corporate website starting next quarter.",
-  },
-  {
-    icon: <IconAlertCircle />,
-    title: "Establish Anti-Corruption Training",
-    description:
-      "Develop and implement an anti-corruption and ethics training program for all employees, with a focus on procurement and financial practices, by Q1 2025.",
-  },
-];
+// Mapping of titles to icons
+const iconMap = {
+  "Reduce CO₂ Emissions by 10%": <IconUserExclamation />,
+  "Upgrade to Energy-Efficient Systems": <IconMessage />,
+  "Implement Water Recycling": <IconUserExclamation />,
+  "Launch Diversity & Inclusion Program": <IconMessage />,
+  "Increase Governance Transparency": <IconAlertCircle />,
+  "Establish Anti-Corruption Training": <IconAlertCircle />,
+};
 
 // Function to truncate long descriptions
 const truncateText = (text, maxLength) => {
@@ -54,6 +28,28 @@ const truncateText = (text, maxLength) => {
 };
 
 export default function ToDoList() {
+  const [toDoList, setToDoList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadToDoList = async () => {
+      const currentUser = await getUser();
+      if (currentUser) {
+        const { company } = currentUser;
+        const todos = await fetchToDoListByCompany(company);
+
+        setToDoList(todos);
+      }
+      setLoading(false);
+    };
+
+    loadToDoList();
+  }, []);
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <Widget rowSpan={4} colSpan={2} flex={1}>
       <Stack p={2}>
@@ -80,13 +76,14 @@ export default function ToDoList() {
                 aspectRatio={1}
                 p={2}
               >
-                {n.icon}
+                {/* Dynamically map the icon based on the title */}
+                {iconMap[n.title] || <IconMessage />}
               </Box>
               <Stack spacing={0}>
                 <Text fontWeight="bold">{n.title}</Text>
                 <Text>
                   {truncateText(n.description, 40)}
-                  {/* Show up to 30 characters */}
+                  {/* Show up to 40 characters */}
                 </Text>
               </Stack>
             </Flex>

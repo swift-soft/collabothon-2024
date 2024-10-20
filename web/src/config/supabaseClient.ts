@@ -47,3 +47,46 @@ export const fetchActionsForUser = async (userId) => {
   }
   return data;
 };
+
+export const fetchToDoListByCompany = async (companyId) => {
+  const { data, error } = await supabase
+    .from("to_dos")
+    .select("*")
+    .eq("company_id", companyId);
+
+  if (error) {
+    console.error("Error fetching to-do list:", error);
+    return [];
+  }
+
+  return data;
+};
+
+export const fetchConsultantsForCompany = async (companyId) => {
+  try {
+    const { data, error } = await supabase
+      .from("consultants_company")
+      .select("consultant_id")
+      .eq("company_id", companyId);
+
+    if (error) {
+      throw error;
+    }
+
+    const consultantIds = data.map((row) => row.consultant_id);
+
+    const { data: consultants, error: consultantError } = await supabase
+      .from("profiles")
+      .select("id, full_name, avatar_url, available")
+      .in("id", consultantIds);
+
+    if (consultantError) {
+      throw consultantError;
+    }
+    console.log(consultants);
+    return consultants;
+  } catch (error) {
+    console.error("Error fetching consultants:", error);
+    return [];
+  }
+};

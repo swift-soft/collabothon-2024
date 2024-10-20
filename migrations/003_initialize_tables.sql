@@ -29,3 +29,10 @@ CREATE TABLE to_dos (
     description TEXT,
     company_id UUID NOT NULL REFERENCES companies(id)
 );
+
+CREATE TABLE consultants_company (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    consultant_id UUID NOT NULL REFERENCES profiles(id),
+    company_id UUID NOT NULL REFERENCES companies(id)
+);
+
